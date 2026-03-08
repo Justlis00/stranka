@@ -1,0 +1,66 @@
+/* ═══════════════════════════════════════════════════════════════
+   pricing.css — PARTNERI (Pricing karty)
+   ───────────────────────────────────────────────────────────────
+   TODO: Názvy plánov, ceny a zoznam funkcií zmeň v index.html
+   TODO: Zvýraznený plán — presuň class="popular" na požadovanú kartu
+   TODO: Text odznaku "Najobľúbenejší" zmeň v index.html
+═══════════════════════════════════════════════════════════════ */
+
+/* Mriežka pricing kariet — 3 stĺpce, zarovnané nahor */
+.pricing-grid {
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+}
+
+/* Padding pricing karty */
+.pricing-card {
+  padding:  var(--space-md) var(--space-md) var(--space-lg);
+  position: relative;
+}
+
+/* Zvýraznená karta (najobľúbenejší plán) */
+.pricing-card.popular {
+  border-color: var(--clr-primary);
+  box-shadow:   0 0 0 2px var(--clr-primary), var(--shadow-md);
+  transform:    scale(1.02);
+}
+
+/* Odznak "Najobľúbenejší" */
+.popular-badge {
+  display:        inline-block;
+  background:     var(--clr-accent);
+  color:          #fff;
+  font-size:      0.72rem;
+  font-weight:    700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding:        3px 10px;
+  border-radius:  999px;
+  margin-bottom:  var(--space-sm);
+}
+
+/* Názov plánu */
+.plan-name { font-size: 1.1rem; margin-bottom: 6px; }
+
+/* Cena */
+.price {
+  font-size:     2.25rem;
+  font-weight:   700;
+  color:         var(--clr-dark);
+  line-height:   1;
+  margin-bottom: 8px;
+}
+.price span { font-size: 1rem; font-weight: 400; color: var(--clr-muted); }
+
+/* Popis plánu */
+.plan-desc { font-size: 0.88rem; color: var(--clr-muted); margin-bottom: var(--space-sm); }
+
+/* Zoznam funkcií plánu */
+.plan-features {
+  display:        flex;
+  flex-direction: column;
+  gap:            8px;
+  margin-bottom:  var(--space-md);
+  font-size:      0.9rem;
+}
+.plan-features li.disabled { color: var(--clr-muted); opacity: 0.55; }

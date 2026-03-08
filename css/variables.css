@@ -1,0 +1,55 @@
+/* ═══════════════════════════════════════════════════════════════
+   variables.css — CSS PREMENNÉ (téma)
+   ───────────────────────────────────────────────────────────────
+   TODO: Tu meň farby, fonty a veľkosti — zmena sa prejaví
+         na celom webe naraz.
+═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Farby značky ─────────────────────────────────────────
+     TODO: Nahraď #0b5ed7 farbou tvojej značky */
+  --clr-primary:    #0b5ed7;   /* hlavná modrá — tlačidlá, ikony, akcenty */
+  --clr-primary-dk: #0a4dbf;   /* tmavšia modrá — hover stav tlačidla     */
+  --clr-accent:     #ff7a18;   /* oranžová — odznaky, zvýraznenia          */
+  --clr-dark:       #0a3b66;   /* nadpisy, logo, footer                    */
+  --clr-text:       #222222;   /* základný text                            */
+  --clr-muted:      #6c757d;   /* sekundárny text, placeholders            */
+  --clr-border:     #e4e8f0;   /* okraje kariet, inputov                   */
+
+  /* ── Pozadia ──────────────────────────────────────────────
+     TODO: Zmeň --bg-page pre inú farbu pozadia stránky */
+  --bg-page:        #f4f7fb;
+  --bg-alt:         #ffffff;   /* striedajúce sa sekcie                    */
+  --bg-card:        #ffffff;   /* pozadie kariet                           */
+  --bg-header:      rgba(255, 255, 255, 0.97);
+
+  /* ── Typografia ───────────────────────────────────────────
+     TODO: Zmeň font tu AJ v <link> tagu v index.html
+     Alternatívy: Nunito | Inter | Raleway | Source Sans 3 */
+  --font-family:    'Poppins', Inter, system-ui, -apple-system,
+                    'Segoe UI', Roboto, Arial, sans-serif;
+  --font-size-base: 16px;
+
+  /* ── Medzery ──────────────────────────────────────────────
+     TODO: Uprav medzery podľa potreby */
+  --space-xs:  8px;
+  --space-sm:  16px;
+  --space-md:  24px;
+  --space-lg:  48px;
+  --space-xl:  80px;
+
+  /* ── Layout ───────────────────────────────────────────────
+     TODO: --container-max určuje maximálnu šírku obsahu */
+  --container-max: 1200px;
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+
+  /* ── Tiene ────────────────────────────────────────────────*/
+  --shadow-sm:  0 2px 8px   rgba(10, 59, 102, 0.06);
+  --shadow-md:  0 6px 24px  rgba(10, 59, 102, 0.10);
+  --shadow-lg:  0 12px 40px rgba(10, 59, 102, 0.14);
+
+  /* ── Prechody ─────────────────────────────────────────────*/
+  --transition: 0.22s ease;
+}

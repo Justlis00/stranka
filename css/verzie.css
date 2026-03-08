@@ -1,0 +1,169 @@
+/* ═══════════════════════════════════════════════════════════════
+   verzie.css — Sekcia verzií systému (4 plány)
+   ───────────────────────────────────────────────────────────────
+   TODO: Farby stĺpcov zmeň cez style="" na .verzia-badge v HTML
+   TODO: Zvýraznenú kartu zmeň presunutím class="verzia-popular"
+   TODO: Funkcie a ceny zmeň priamo v index.html
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Pozadie sekcie ───────────────────────────────────────── */
+.verzie-section { background: var(--bg-page); }
+
+/* ── Mriežka 4 kariet ─────────────────────────────────────── */
+.verzie-grid {
+  display:               grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:                   var(--space-md);
+  align-items:           start;
+  margin-top:            var(--space-lg);
+}
+
+/* ── Karta verzie ─────────────────────────────────────────── */
+.verzia-card {
+  background:    var(--bg-card);
+  border:        1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  overflow:      hidden;
+  display:       flex;
+  flex-direction: column;
+  transition:    box-shadow var(--transition), transform var(--transition);
+}
+.verzia-card:hover {
+  box-shadow: var(--shadow-md);
+  transform:  translateY(-4px);
+}
+
+/* ── Zvýraznená karta ─────────────────────────────────────── */
+/* TODO: Presuň class="verzia-popular" na inú kartu ak chceš zmeniť */
+.verzia-popular {
+  border-color: var(--clr-primary);
+  box-shadow:   0 0 0 2px var(--clr-primary), var(--shadow-md);
+  transform:    scale(1.02);
+  position:     relative;
+}
+.verzia-popular:hover { transform: scale(1.02) translateY(-4px); }
+
+/* ── Hlavička karty ───────────────────────────────────────── */
+.verzia-header {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+/* Odznak (Štart / Business / ...) */
+.verzia-badge {
+  display:        inline-block;
+  font-size:      0.72rem;
+  font-weight:    700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding:        3px 10px;
+  border-radius:  999px;
+  margin-bottom:  10px;
+}
+.verzia-badge--popular {
+  background: var(--clr-accent);
+  color:      #fff;
+}
+
+/* Názov verzie */
+.verzia-name {
+  font-size:     1.2rem;
+  font-weight:   700;
+  color:         var(--clr-dark);
+  margin-bottom: 6px;
+}
+
+/* Krátky popis */
+.verzia-tagline {
+  font-size:     0.83rem;
+  color:         var(--clr-muted);
+  line-height:   1.5;
+  margin-bottom: var(--space-sm);
+}
+
+/* Cena */
+.verzia-price { margin-top: var(--space-sm); }
+.verzia-amount {
+  font-size:   1.35rem;
+  font-weight: 700;
+  color:       var(--clr-dark);
+  display:     block;
+}
+
+/* ── Zoznam funkcií ───────────────────────────────────────── */
+.verzia-features {
+  list-style: none;
+  display:    flex;
+  flex-direction: column;
+  gap:        10px;
+  padding:    var(--space-md);
+  flex:       1;               /* tlačidlo vždy dole */
+}
+
+.verzia-features li {
+  display:     flex;
+  align-items: flex-start;
+  gap:         10px;
+  font-size:   0.875rem;
+  color:       var(--clr-text);
+  line-height: 1.4;
+}
+
+/* Zaškrtnutie pred položkou */
+.verzia-features li::before {
+  content:         '✓';
+  flex-shrink:     0;
+  width:           20px;
+  height:          20px;
+  border-radius:   50%;
+  background:      rgba(11, 94, 215, 0.09);
+  color:           var(--clr-primary);
+  font-weight:     700;
+  font-size:       0.72rem;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  margin-top:      1px;
+}
+
+/* Nedostupná funkcia */
+.verzia-features li.disabled {
+  color: var(--clr-muted);
+  opacity: 0.45;
+}
+.verzia-features li.disabled::before {
+  content:    '✕';
+  background: rgba(100, 116, 139, 0.08);
+  color:      var(--clr-muted);
+}
+
+/* ── Tlačidlo na spodku karty ─────────────────────────────── */
+.verzia-card .btn {
+  margin: 0 var(--space-md) var(--space-md);
+  display: block;
+  text-align: center;
+}
+
+/* ── Poznámka pod tabuľkou ────────────────────────────────── */
+.verzie-note {
+  text-align:  center;
+  font-size:   0.88rem;
+  color:       var(--clr-muted);
+  margin-top:  var(--space-lg);
+}
+.verzie-note a {
+  color:           var(--clr-primary);
+  font-weight:     600;
+  text-decoration: none;
+}
+.verzie-note a:hover { text-decoration: underline; }
+
+/* ── Responzívnosť ────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .verzie-grid { grid-template-columns: repeat(2, 1fr); }
+  .verzia-popular { transform: none; }
+  .verzia-popular:hover { transform: translateY(-4px); }
+}
+@media (max-width: 600px) {
+  .verzie-grid { grid-template-columns: 1fr; }
+}

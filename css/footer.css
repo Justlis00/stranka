@@ -1,0 +1,51 @@
+/* ═══════════════════════════════════════════════════════════════
+   footer.css — PÄTA STRÁNKY
+   ───────────────────────────────────────────────────────────────
+   TODO: Názov značky, odkazy a sociálne siete zmeň v index.html
+   TODO: Farbu päty zmeň cez --clr-dark v variables.css
+═══════════════════════════════════════════════════════════════ */
+
+/* Päta — tmavé pozadie */
+.site-footer {
+  background:  var(--clr-dark);
+  color:       rgba(255, 255, 255, 0.75);
+  padding-top: var(--space-xl);
+}
+
+/* 4-stĺpcový grid päty */
+.footer-inner {
+  display:               grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap:                   var(--space-lg);
+  padding-bottom:        var(--space-lg);
+  border-bottom:         1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Stĺpec so značkou (logo + popis + sociálne siete) */
+.footer-brand .logo    { display: flex; align-items: center; margin-bottom: var(--space-sm); }
+.footer-brand .logo img {
+  height: auto;
+  /* TODO: Ak má logo tmavé farby a nie je viditeľné na tmavom pozadí,
+     odkomentuj nasledujúci riadok pre invertovanie farieb: */
+  /* filter: brightness(0) invert(1); */
+}
+
+/* Ikony sociálnych sietí */
+/* TODO: Zmeň href atribúty na skutočné profily */
+.social-links         { display: flex; gap: 12px; }
+.social-links a       { color: rgba(255, 255, 255, 0.6); transition: color var(--transition); }
+.social-links a:hover { color: #fff; }
+
+/* Linkové stĺpce (Company, Product, Legal) */
+.footer-col h4         { color: rgba(255, 255, 255, 0.45); margin-bottom: 12px; }
+.footer-col ul         { display: flex; flex-direction: column; gap: 8px; }
+.footer-col a          { font-size: 0.9rem; text-decoration: none; color: rgba(255, 255, 255, 0.65); transition: color var(--transition); }
+.footer-col a:hover    { color: #fff; }
+
+/* Spodná lišta (copyright) */
+.footer-bottom {
+  text-align: center;
+  padding:    var(--space-sm);
+  font-size:  0.82rem;
+  color:      rgba(255, 255, 255, 0.4);
+}

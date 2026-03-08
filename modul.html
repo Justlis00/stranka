@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Modul — WebArat</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header sa načíta cez js/header.js -->
+
+  <main id="modul-main">
+    <!-- Obsah sa vygeneruje cez JS na základe ?modul=slug v URL -->
+  </main>
+
+  <!-- Footer sa načíta cez js/footer.js -->
+
+  <script src="js/moduly.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+  (function () {
+
+    /* ── Načítaj slug z URL parametra ?modul=crm ──────────── */
+    const params = new URLSearchParams(window.location.search);
+    const slug   = params.get('modul');
+    const modul  = MODULY.find(m => m.slug === slug);
+
+    if (!modul) {
+      document.getElementById('modul-main').innerHTML = `
+        <section class="section">
+          <div class="container" style="text-align:center;padding:80px 0">
+            <h2>Modul nenájdený</h2>
+            <p style="color:var(--clr-muted);margin-bottom:24px">Zadaný modul neexistuje.</p>
+            <a class="btn btn-primary" href="index.html#services">← Späť na moduly</a>
+          </div>
+        </section>`;
+      return;
+    }
+
+    /* ── Nastav title stránky ─────────────────────────────── */
+    document.title = modul.name + ' — WebArat';
+
+    /* ── Ostatné moduly (bez aktuálneho) ─────────────────── */
+    const others = MODULY.filter(m => m.slug !== slug).slice(0, 8);
+    const othersHTML = others.map(m => `
+      <a class="module-card" href="modul.html?modul=${m.slug}" style="--module-color:${m.color}">
+        <div class="module-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            ${m.icon}
+          </svg>
+        </div>
+        <h3>${m.name}</h3>
+      </a>`).join('');
+
+    /* ── Funkcie modulu ───────────────────────────────────── */
+    const featuresHTML = modul.features.map(f => `<li>${f}</li>`).join('');
+
+    /* ── Vygeneruj obsah stránky ──────────────────────────── */
+    document.getElementById('modul-main').innerHTML = `
+
+      <!-- PAGE HERO -->
+      <section class="modul-hero" style="background:linear-gradient(135deg,#0a3b66 0%,${modul.color} 100%)">
+        <div class="container">
+          <div class="modul-hero-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              ${modul.icon}
+            </svg>
+          </div>
+          <p class="page-hero-super" style="color:rgba(255,255,255,0.6)">Modul</p>
+          <h1>${modul.name}</h1>
+          <p>${modul.short}</p>
+        </div>
+      </section>
+
+      <!-- OBSAH MODULU -->
+      <section class="section">
+        <div class="container">
+          <div class="modul-content">
+
+            <!-- Ľavý stĺpec — popis + funkcie -->
+            <div class="modul-desc">
+              <h2>O module</h2>
+              <p>${modul.desc}</p>
+
+              <h3 style="margin-bottom:16px">Čo modul obsahuje</h3>
+              <ul class="modul-features">
+                ${featuresHTML}
+              </ul>
+
+              <a class="modul-back" href="index.html#services">← Všetky moduly</a>
+            </div>
+
+            <!-- Pravý stĺpec — CTA karta -->
+            <div>
+              <div class="modul-cta-card">
+                <div class="modul-hero-icon" style="background:color-mix(in srgb,${modul.color} 12%,transparent);margin:0 auto 16px">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="${modul.color}" stroke-width="1.8"
+                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    ${modul.icon}
+                  </svg>
+                </div>
+                <h3>Zaujal vás tento modul?</h3>
+                <p>Dohodnite si bezplatnú prezentáciu a ukážeme vám ho naživo.</p>
+                <a class="btn btn-primary" href="kontakt.html?tema=${modul.slug}">Dohodnúť prezentáciu</a>
+                <a class="btn btn-outline" href="kontakt.html">Mám otázku</a>
+                <a class="modul-back" href="index.html#services">← Všetky moduly</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- OSTATNÉ MODULY -->
+      <section class="section bg-alt">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Ďalšie moduly</h2>
+          </div>
+          <div class="grid modul-other-grid">
+            ${othersHTML}
+          </div>
+        </div>
+      </section>
+    `;
+
+  })();
+  </script>
+</body>
+</html>

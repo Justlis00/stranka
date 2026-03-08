@@ -1,0 +1,99 @@
+/* ═══════════════════════════════════════════════════════════════
+   about.css — O NÁS (štatistický pás + teaser sekcia na index)
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Pôvodný štatistický pás ──────────────────────────────── */
+.section-about {
+  padding-block:  var(--space-lg);
+  border-bottom:  1px solid var(--clr-border);
+}
+.about-grid {
+  display:               grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:                   var(--space-md);
+  text-align:            center;
+}
+.about-stat        { display: flex; flex-direction: column; gap: 4px; }
+.stat-num          { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--clr-primary); line-height: 1; }
+.stat-label        { font-size: 0.9rem; color: var(--clr-muted); }
+
+/* ── O nás teaser — kompaktná sekcia na index.html ───────── */
+.onas-teaser { background: var(--clr-dark); }
+
+.onas-teaser-inner {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   var(--space-xl);
+  align-items:           center;
+}
+
+/* Ľavá strana — text */
+.onas-teaser-text .section-eyebrow {
+  display:        block;
+  font-size:      0.75rem;
+  font-weight:    600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color:          var(--clr-primary);
+  margin-bottom:  var(--space-sm);
+}
+.onas-teaser-text h2 {
+  color:         #fff;
+  margin-bottom: var(--space-sm);
+  line-height:   1.25;
+}
+.onas-teaser-text p {
+  color:         rgba(255, 255, 255, 0.7);
+  font-size:     0.97rem;
+  line-height:   1.75;
+  margin-bottom: var(--space-sm);
+}
+.onas-teaser-text .btn-primary { margin-top: var(--space-sm); }
+
+/* Pravá strana — štatistiky + fotka */
+.onas-teaser-right {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-md);
+}
+
+/* Mriežka štatistík 2×2 */
+.onas-teaser-stats {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   var(--space-sm);
+}
+
+.onas-teaser-stat {
+  background:    rgba(255, 255, 255, 0.06);
+  border:        1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding:       var(--space-sm) var(--space-md);
+  display:       flex;
+  flex-direction: column;
+  gap:           4px;
+}
+.onas-teaser-stat .stat-num   { color: #fff; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.onas-teaser-stat .stat-label { color: rgba(255, 255, 255, 0.55); font-size: 0.82rem; }
+
+/* Fotka tímu */
+.onas-teaser-img {
+  width:         100%;
+  height:        220px;
+  object-fit:    cover;
+  border-radius: var(--radius-md);
+  opacity:       0.85;
+  display:       block;
+}
+
+/* ── Responzívnosť ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .onas-teaser-inner  { grid-template-columns: 1fr; }
+  .onas-teaser-right  { order: -1; }
+  .onas-teaser-img    { height: 180px; }
+  .about-grid         { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+  .about-grid         { grid-template-columns: 1fr; }
+  .onas-teaser-stats  { grid-template-columns: 1fr 1fr; }
+}

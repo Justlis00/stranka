@@ -1,0 +1,54 @@
+/* ═══════════════════════════════════════════════════════════════
+   testimonials.css — ZÁKAZNÍCI (Referencie)
+   ───────────────────────────────────────────────────────────────
+   TODO: Citáty, mená a fotky zmeň v index.html v sekcii #testimonials
+   TODO: Avatar fotky: odporúčaná veľkosť 96 × 96 px (štvorcové)
+   TODO: Pridaj alebo odober .testimonial.card bloky podľa potreby
+═══════════════════════════════════════════════════════════════ */
+
+/* Mriežka referencií — 3 stĺpce na desktope */
+.testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+
+/* Karta referencie */
+.testimonial {
+  padding:        var(--space-md);
+  display:        flex;
+  flex-direction: column;
+  gap:            12px;
+}
+
+/* Hviezdičky */
+/* TODO: Farbu hviezdičiek zmeň tu */
+.stars {
+  color:          #f59e0b;
+  font-size:      1.05rem;
+  letter-spacing: 2px;
+}
+
+/* Citát */
+.quote {
+  font-size:  0.97rem;
+  color:      var(--clr-text);
+  font-style: italic;
+  flex:       1;
+  margin:     0;
+}
+
+/* Autor citátu */
+.attrib-wrap {
+  display:     flex;
+  align-items: center;
+  gap:         12px;
+}
+
+/* Avatar fotka */
+.avatar {
+  width:         48px;
+  height:        48px;
+  border-radius: 50%;
+  object-fit:    cover;
+  flex-shrink:   0;
+}
+
+.attrib-name { font-weight: 600; font-size: 0.9rem; margin: 0; }
+.attrib-role { font-size: 0.8rem; color: var(--clr-muted); margin: 0; }

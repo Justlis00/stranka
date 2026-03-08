@@ -1,0 +1,198 @@
+/* ═══════════════════════════════════════════════════════════════
+   logos.css — Scrollovacia lišta lôg (Referencie & Partneri)
+   ───────────────────────────────────────────────────────────────
+   TODO: Rýchlosť scrollu zmeň cez --strip-duration
+   TODO: Loga nahraď <img> tagmi v index.html
+         Odporúčaná veľkosť lôg: SVG, výška max 40px, šírka auto
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Wrapper celej sekcie ─────────────────────────────────── */
+.logos-section { background: var(--bg-page); padding-block: var(--space-xl); }
+
+/* ── Blok (Zákazníci / Partneri) ──────────────────────────── */
+.logos-block { display: flex; flex-direction: column; gap: var(--space-lg); }
+
+/* Nadpis + text — vedľa seba na desktope */
+.logos-block-header {
+  display:               grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap:                   var(--space-lg);
+  align-items:           start;
+}
+
+/* TODO: Nadpis zmeň v index.html */
+.logos-block-title {
+  font-size:   clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  color:       var(--clr-dark);
+  margin:      0;
+  line-height: 1.2;
+}
+
+/* TODO: Text zmeň v index.html */
+.logos-block-text {
+  font-size:   0.97rem;
+  line-height: 1.8;
+  color:       var(--clr-muted);
+  margin:      0;
+}
+
+/* ── Deliaca čiara medzi zákazníkmi a partnermi ───────────── */
+.logos-divider {
+  border:     none;
+  border-top: 1px solid var(--clr-border);
+  margin-block: var(--space-xl);
+}
+
+/* ── Scrollovacia lišta ───────────────────────────────────── */
+/* Fadeout masky na krajoch */
+.logo-strip-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.logo-strip-wrap::before,
+.logo-strip-wrap::after {
+  content:  '';
+  position: absolute;
+  top:      0;
+  bottom:   0;
+  width:    120px;
+  z-index:  2;
+  pointer-events: none;
+}
+.logo-strip-wrap::before {
+  left:       0;
+  background: linear-gradient(to right, var(--bg-page) 0%, transparent 100%);
+}
+.logo-strip-wrap::after {
+  right:      0;
+  background: linear-gradient(to left, var(--bg-page) 0%, transparent 100%);
+}
+
+/* Track — flex, animovaný translateX */
+.logo-strip {
+  overflow: hidden;
+}
+
+/* TODO: Rýchlosť scrollu — znížiť číslo = rýchlejšie */
+:root { --strip-duration: 32s; }
+
+.logo-strip-track {
+  display:   flex;
+  align-items: center;
+  gap:       var(--space-lg);
+  width:     max-content;
+
+  animation: logoScroll var(--strip-duration) linear infinite;
+}
+
+/* Opačný smer pre partneri */
+.logo-strip--reverse .logo-strip-track {
+  animation-direction: reverse;
+}
+
+/* Pauza pri hover */
+.logo-strip-wrap:hover .logo-strip-track { animation-play-state: paused; }
+
+@keyframes logoScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Jednotlivé logo-položky ──────────────────────────────── */
+/* TODO: Nahraď <span> za <img> — štýly pre oba prípady */
+.logo-item {
+  display:      flex;
+  align-items:  center;
+  justify-content: center;
+  flex-shrink:  0;
+
+  /* Textové placeholder loga */
+  font-weight:    700;
+  font-size:      1rem;
+  color:          var(--clr-muted);
+  opacity:        0.55;
+  letter-spacing: -0.02em;
+  white-space:    nowrap;
+  padding:        10px 24px;
+  border:         1px solid var(--clr-border);
+  border-radius:  var(--radius-sm);
+  background:     var(--bg-card);
+  transition:     opacity var(--transition), box-shadow var(--transition);
+}
+.logo-item:hover { opacity: 1; box-shadow: var(--shadow-sm); }
+
+/* Keď je logo-item <img> */
+.logo-item img {
+  height:     36px;
+  width:      auto;
+  object-fit: contain;
+  /* Sivé loga — pri hover plná farba */
+  filter:     grayscale(100%) opacity(0.5);
+  transition: filter var(--transition);
+}
+.logo-item img:hover { filter: grayscale(0%) opacity(1); }
+
+/* ── Responzívnosť ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .logos-block-header { grid-template-columns: 1fr; gap: var(--space-sm); }
+  .logo-strip-wrap::before,
+  .logo-strip-wrap::after { width: 60px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CTA STRIP — Ponuka prezentácie
+   ───────────────────────────────────────────────────────────────
+   TODO: Farbu pozadia zmeň tu alebo cez --clr-primary
+   TODO: Text a odkaz zmeň v index.html
+═══════════════════════════════════════════════════════════════ */
+.cta-strip {
+  background: linear-gradient(135deg, #0a3b66 0%, var(--clr-primary) 100%);
+  padding-block: var(--space-lg);
+}
+
+.cta-strip-inner {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  gap:             var(--space-lg);
+  flex-wrap:       wrap;
+}
+
+.cta-strip-text h2 {
+  color:         #fff;
+  margin-bottom: 8px;
+  font-size:     clamp(1.3rem, 2.5vw, 1.85rem);
+}
+.cta-strip-text p {
+  color:     rgba(255, 255, 255, 0.75);
+  font-size: 0.97rem;
+  margin:    0;
+  max-width: 520px;
+}
+
+.cta-strip-actions {
+  display:    flex;
+  gap:        12px;
+  flex-wrap:  wrap;
+  flex-shrink: 0;
+}
+
+/* Ghost tlačidlo na tmavom pozadí */
+.cta-strip .btn-ghost {
+  border-color: rgba(255, 255, 255, 0.45);
+  background:   rgba(255, 255, 255, 0.08);
+  color:        #fff;
+}
+.cta-strip .btn-ghost:hover {
+  background:   rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 768px) {
+  .cta-strip-inner   { flex-direction: column; align-items: flex-start; }
+  .cta-strip-actions { width: 100%; }
+  .cta-strip-actions .btn,
+  .cta-strip-actions .btn-ghost { flex: 1; text-align: center; }
+}
+

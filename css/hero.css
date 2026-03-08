@@ -1,0 +1,179 @@
+/* ═══════════════════════════════════════════════════════════════
+   hero.css — HERO SEKCIA (fullwidth banner + text naľavo)
+   ───────────────────────────────────────────────────────────────
+   TODO: Výšku banneru zmeň cez --hero-height
+   TODO: Silu tmavého overlay zmeň cez opacity v .hero-overlay
+   TODO: Obrázok nahraď v index.html (src atribút)
+   TODO: CTA text a odkaz zmeň v index.html
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Výška banneru ────────────────────────────────────────── */
+/* TODO: Zmeň hodnotu pre vyšší/nižší banner */
+:root { --hero-height: 92vh; }
+
+/* ── Wrapper sekcie ───────────────────────────────────────── */
+.hero {
+  position:    relative;
+  width:       100%;
+  min-height:  var(--hero-height);
+  display:     flex;
+  align-items: center;
+  overflow:    hidden;
+}
+
+/* ── Pozadie — fotka pevne ukotvená, nepohybuje sa ───────── */
+.hero-bg {
+  position: absolute;
+  inset:    0;
+  z-index:  0;
+}
+.hero-bg img {
+  position:        absolute;
+  inset:           0;
+  width:           100%;
+  height:          100%;
+  object-fit:      cover;
+  object-position: center top;
+  display:         block;
+}
+
+/* ── Overlay — pevne ukotvený, nad fotkou, pod textom ─────── */
+.hero-overlay {
+  position: absolute;
+  inset:    0;
+  z-index:  1;
+  background: linear-gradient(
+    to right,
+    rgba(5, 20, 50, 0.82) 0%,
+    rgba(5, 20, 50, 0.45) 55%,
+    rgba(5, 20, 50, 0.05) 100%
+  );
+}
+
+/* ── Grid — text vľavo, prázdne miesto vpravo ────────────── */
+.hero-inner {
+  position:              relative;
+  z-index:               2;          /* nad fotkou aj overlayom */
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   var(--space-lg);
+  align-items:           center;
+  padding-block:         var(--space-xl);
+  width:                 100%;
+}
+
+/* Pravá strana — prázdna (Churchill je na pozadí) */
+.hero-spacer { display: block; }
+
+/* ── Text na ľavej strane ─────────────────────────────────── */
+.hero-copy { max-width: 560px; }
+
+/* ── Odznak dôveryhodnosti ────────────────────────────────── */
+.hero-tag {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            6px;
+  background:     rgba(255, 255, 255, 0.12);
+  color:          #fff;
+  border:         1px solid rgba(255, 255, 255, 0.28);
+  border-radius:  999px;
+  padding:        5px 14px;
+  font-size:      0.8rem;
+  font-weight:    600;
+  letter-spacing: .04em;
+  margin-bottom:  var(--space-md);
+  backdrop-filter: blur(4px);
+}
+.hero-tag::before { content: '✦'; font-size: 0.62rem; }
+
+/* ── Hlavný citát ─────────────────────────────────────────── */
+.hero-quote {
+  margin:         0 0 6px 0;
+  padding:        0 0 0 20px;
+  border-left:    4px solid var(--clr-primary);
+
+  font-size:      clamp(1.5rem, 3vw, 2.2rem);
+  font-weight:    700;
+  line-height:    1.35;
+  color:          #ffffff;
+  font-style:     italic;
+  letter-spacing: -0.01em;
+
+  /* Jemný tieň pre čitateľnosť na svetlých častiach fotky */
+  text-shadow:    0 2px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Meno autora ──────────────────────────────────────────── */
+.hero-cite {
+  display:        block;
+  font-size:      0.82rem;
+  font-weight:    600;
+  color:          rgba(255, 255, 255, 0.7);
+  font-style:     normal;
+  margin-bottom:  var(--space-md);
+  padding-left:   24px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* ── Benefit / podnadpis ──────────────────────────────────── */
+.hero-benefit {
+  font-size:     1rem;
+  color:         rgba(255, 255, 255, 0.82);
+  line-height:   1.75;
+  margin-bottom: var(--space-md);
+}
+
+/* ── CTA tlačidlá ─────────────────────────────────────────── */
+.hero-ctas {
+  display:       flex;
+  gap:           12px;
+  flex-wrap:     wrap;
+  margin-bottom: var(--space-md);
+}
+
+/* Ghost (priehľadné) tlačidlo pre svetlé pozadie */
+/* TODO: Zmeň farbu orámovaného tlačidla tu */
+.btn-ghost {
+  display:      inline-block;
+  padding:      12px 24px;
+  border-radius: var(--radius-sm);
+  font-family:  inherit;
+  font-weight:  600;
+  font-size:    0.95rem;
+  text-decoration: none;
+  cursor:       pointer;
+  border:       2px solid rgba(255, 255, 255, 0.55);
+  background:   rgba(255, 255, 255, 0.08);
+  color:        #fff;
+  backdrop-filter: blur(4px);
+  transition:   background var(--transition), border-color var(--transition),
+                transform var(--transition);
+}
+.btn-ghost:hover {
+  background:   rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform:    translateY(-1px);
+}
+
+/* ── Sociálny dôkaz ───────────────────────────────────────── */
+.hero-social-proof {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-sm);
+  flex-wrap:   wrap;
+}
+.proof-label {
+  font-size:      0.72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color:          rgba(255, 255, 255, 0.5);
+  white-space:    nowrap;
+}
+.trusted-logos      { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.trusted-logos span {
+  font-weight: 600;
+  font-size:   0.82rem;
+  color:       rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}

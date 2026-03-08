@@ -1,0 +1,89 @@
+/* ═══════════════════════════════════════════════════════════════
+   responsive.css — RESPONZÍVNE PRAVIDLÁ
+   ───────────────────────────────────────────────────────────────
+   Breakpointy:
+     ≤ 1024px  Tablet na šírku
+     ≤  768px  Tablet na výšku / veľký mobil
+     ≤  480px  Mobil
+   TODO: Uprav hodnoty ak chceš iné breakpointy
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Tablet na šírku (≤ 1024px) ───────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-inner        { gap: var(--space-md); }
+  .features-grid     { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner      { grid-template-columns: 1fr 1fr; }
+  .footer-brand      { grid-column: 1 / -1; }
+}
+
+/* ── Tablet na výšku / veľký mobil (≤ 768px) ─────────────── */
+@media (max-width: 768px) {
+  :root { --hero-height: 100svh; }
+
+  .section { padding-block: var(--space-lg); }
+
+  /* Hero — jeden stĺpec, text zaberá celú šírku */
+  .hero-inner        { grid-template-columns: 1fr; padding-block: var(--space-lg); }
+  .hero-spacer       { display: none; }
+  .hero-copy         { max-width: 100%; }
+
+  /* Overlay — tmavší na tablete (text na celú šírku) */
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(5, 20, 50, 0.75) 0%,
+      rgba(5, 20, 50, 0.60) 100%
+    );
+  }
+
+  /* Citát — menší font */
+  .hero-quote { font-size: 1.3rem; }
+
+  /* Sekcie — jeden stĺpec */
+  .services-grid { grid-template-columns: 1fr; }
+  .pricing-grid  { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; }
+
+  .pricing-card.popular { transform: none; }
+  .about-grid           { grid-template-columns: repeat(3, 1fr); }
+
+  /* Hamburger */
+  .menu-toggle { display: flex; }
+
+  /* Logo v nav — skryj na mobile */
+  .nav-logo-item { display: none; }
+
+  .nav {
+    position:      absolute;
+    top:           66px;
+    left:          0;
+    right:         0;
+    background:    #fff;
+    border-bottom: 1px solid var(--clr-border);
+    box-shadow:    var(--shadow-md);
+    padding:       var(--space-sm) var(--space-md);
+    display:       none;
+  }
+  .nav.open { display: block; }
+  .nav ul   { flex-direction: column; gap: 4px; }
+  .nav-cta  { margin-top: 4px; }
+}
+
+/* ── Mobil (≤ 480px) ──────────────────────────────────────── */
+@media (max-width: 480px) {
+  .features-grid     { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .about-grid        { grid-template-columns: 1fr; }
+  .footer-inner      { grid-template-columns: 1fr; }
+
+  .hero-quote { font-size: 1.15rem; padding-left: 14px; }
+
+  /* CTA tlačidlá pod sebou */
+  .hero-ctas      { flex-direction: column; }
+  .hero-ctas .btn,
+  .hero-ctas .btn-ghost { text-align: center; }
+
+  /* Sociálny dôkaz — zalamovanie */
+  .hero-social-proof { flex-direction: column; align-items: flex-start; gap: 6px; }
+}

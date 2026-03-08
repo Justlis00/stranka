@@ -1,0 +1,115 @@
+/* ═══════════════════════════════════════════════════════════════
+   header.css — HLAVIČKA A NAVIGÁCIA
+   ───────────────────────────────────────────────────────────────
+   TODO: Výšku hlavičky zmeň cez padding-block v .header-inner
+   TODO: Logo zmeň v index.html — nahraď text <img> tagom
+   TODO: Nav-CTA tlačidlo (Kontakt) — štýl je .nav-cta
+═══════════════════════════════════════════════════════════════ */
+
+/* Sticky hlavička */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-header);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+/* JS pridá triedu .scrolled po 10px scrollu */
+.site-header.scrolled {
+  border-color: var(--clr-border);
+  box-shadow:   var(--shadow-sm);
+}
+
+.header-inner {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding-block:   18px;
+}
+
+/* Logo */
+.logo {
+  display:         flex;
+  align-items:     center;
+  text-decoration: none;
+  flex-shrink:     0;
+}
+/* SVG/PNG logo — veľkosť kontroluj cez max-height */
+.logo img {
+  display:    block;
+  width:      auto;
+  height:     auto;
+  max-height: 28px;   /* TODO: zmeň túto hodnotu pre väčšie/menšie logo */
+}
+
+/* Navigačné odkazy */
+.nav ul      { display: flex; align-items: center; gap: 4px; }
+
+/* Logo v navigácii — vedľa "Domov", s pravým oddeľovačom */
+.nav-logo-item {
+  display:      flex;
+  align-items:  center;
+  padding-right: 12px;
+  margin-right:  8px;
+  border-right:  1px solid var(--clr-border);
+}
+.nav-logo-item a {
+  display:    flex;
+  align-items: center;
+  padding:    0;
+  background: none !important;
+}
+.nav-logo-item img {
+  display:    block;
+  height:     22px;
+  width:      auto;
+  max-height: 22px;
+  opacity:    0.85;
+  transition: opacity var(--transition);
+}
+.nav-logo-item a:hover img { opacity: 1; }
+.nav a {
+  padding:         8px 12px;
+  border-radius:   var(--radius-sm);
+  text-decoration: none;
+  font-size:       0.95rem;
+  color:           var(--clr-muted);
+  font-weight:     500;
+  transition:      color var(--transition), background var(--transition);
+}
+.nav a:hover {
+  color:      var(--clr-dark);
+  background: rgba(10, 59, 102, 0.05);
+}
+
+/* TODO: Posledný odkaz v nav (Kontakt) — štylizovaný ako tlačidlo */
+.nav-cta {
+  background:  var(--clr-primary) !important;
+  color:       #fff !important;
+  padding:     8px 16px !important;
+  font-weight: 600 !important;
+}
+.nav-cta:hover { background: var(--clr-primary-dk) !important; }
+
+/* Hamburger tlačidlo — zobrazí sa len na mobile */
+.menu-toggle {
+  display:         none;
+  flex-direction:  column;
+  justify-content: center;
+  gap:             5px;
+  background:      none;
+  border:          none;
+  cursor:          pointer;
+  padding:         8px;
+}
+.menu-toggle .bar {
+  display:       block;
+  width:         24px;
+  height:        2px;
+  background:    var(--clr-dark);
+  border-radius: 2px;
+  transition:    transform var(--transition), opacity var(--transition);
+}

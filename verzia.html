@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Verzia systému — WebArat</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/verzia-detail.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header sa načíta cez js/header.js -->
+  <main id="verzia-main"></main>
+  <!-- Footer sa načíta cez js/footer.js -->
+
+  <script src="js/verzie-data.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+  (function () {
+
+    const params = new URLSearchParams(window.location.search);
+    const slug   = params.get('verzia');
+    const verzia = VERZIE.find(v => v.slug === slug);
+    const main   = document.getElementById('verzia-main');
+
+    /* ── Nenájdená verzia ───────────────────────────────────── */
+    if (!verzia) {
+      main.innerHTML = `
+        <section class="section">
+          <div class="container" style="text-align:center;padding:80px 0">
+            <h2>Verzia nenájdená</h2>
+            <p style="color:var(--clr-muted);margin-bottom:24px">Zadaná verzia neexistuje.</p>
+            <a class="btn btn-primary" href="index.html#verzie">← Späť na verzie</a>
+          </div>
+        </section>`;
+      return;
+    }
+
+    document.title = verzia.name + ' — WebArat';
+
+    /* ── Pomocné funkcie ────────────────────────────────────── */
+    const featuresHTML = verzia.features.map(f => `
+      <li class="${f.included ? '' : 'vd-disabled'}">
+        <span class="vd-check">${f.included ? '✓' : '✕'}</span>
+        ${f.text}
+      </li>`).join('');
+
+    const forWhomHTML = verzia.forWhom.map(f =>
+      `<li><span class="vd-check">✓</span>${f}</li>`).join('');
+
+    const descHTML = verzia.desc.map(p => `<p>${p}</p>`).join('');
+
+    const modulesHTML = verzia.modules.map(m =>
+      `<span class="vd-module-tag">${m}</span>`).join('');
+
+    /* ── Ostatné verzie ─────────────────────────────────────── */
+    const othersHTML = VERZIE.filter(v => v.slug !== slug).map(v => `
+      <a class="vd-other-card" href="verzia.html?verzia=${v.slug}" style="--v-color:${v.color}">
+        <span class="vd-other-badge" style="background:color-mix(in srgb,${v.color} 12%,transparent);color:${v.color}">${v.badge}</span>
+        <strong>${v.name}</strong>
+        <p>${v.tagline}</p>
+        <span class="vd-other-link">Zistiť viac →</span>
+      </a>`).join('');
+
+    /* ── Render ─────────────────────────────────────────────── */
+    main.innerHTML = `
+
+      <!-- PAGE HERO -->
+      <section class="vd-hero" style="background:linear-gradient(135deg,#0a3b66 0%,${verzia.color} 100%)">
+        <div class="container">
+          <a class="vd-back" href="index.html#verzie">← Všetky verzie</a>
+          <span class="vd-hero-badge" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3)">
+            ${verzia.badge}
+          </span>
+          <h1>${verzia.name}</h1>
+          <p class="vd-hero-tagline">${verzia.tagline}</p>
+          <div class="vd-hero-price">
+            <span class="vd-price-amount">${verzia.price}</span>
+            <span class="vd-price-note">${verzia.priceNote}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- HLAVNÝ OBSAH -->
+      <section class="section vd-content">
+        <div class="container">
+          <div class="vd-layout">
+
+            <!-- Ľavý stĺpec -->
+            <div class="vd-left">
+
+              <!-- Perex -->
+              <div class="vd-block">
+                <h2>O verzii ${verzia.name}</h2>
+                <p class="vd-perex">${verzia.perex}</p>
+              </div>
+
+              <!-- Dlhší popis -->
+              <div class="vd-block">
+                ${descHTML}
+              </div>
+
+              <!-- Pre koho je verzia určená -->
+              <div class="vd-block">
+                <h3>Pre koho je verzia určená</h3>
+                <ul class="vd-list">
+                  ${forWhomHTML}
+                </ul>
+              </div>
+
+              <!-- Moduly zahrnuté vo verzii -->
+              <div class="vd-block">
+                <h3>Zahrnuté moduly</h3>
+                <div class="vd-modules">
+                  ${modulesHTML}
+                </div>
+                <a class="vd-link" href="index.html#services">Pozrieť všetky moduly →</a>
+              </div>
+
+            </div>
+
+            <!-- Pravý stĺpec — sticky CTA + funkcie -->
+            <div class="vd-right">
+
+              <!-- CTA karta -->
+              <div class="vd-cta-card" style="--v-color:${verzia.color}">
+                <div class="vd-cta-header" style="background:linear-gradient(135deg,#0a3b66,${verzia.color})">
+                  <span class="vd-cta-badge">${verzia.badge}</span>
+                  <div class="vd-cta-price">${verzia.price}</div>
+                  <p class="vd-cta-note">${verzia.priceNote}</p>
+                </div>
+                <div class="vd-cta-body">
+                  <a class="btn btn-primary" href="kontakt.html?verzia=${verzia.slug}"
+                     style="background:${verzia.color};border-color:${verzia.color}">
+                    ${verzia.cta}
+                  </a>
+                  <a class="btn btn-outline" href="kontakt.html">Mám otázku</a>
+                  <p class="vd-cta-guarantee">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Bez záväzkov · Odpoveď do 24 hodín
+                  </p>
+                </div>
+              </div>
+
+              <!-- Funkcie -->
+              <div class="vd-features-card">
+                <h3>Čo je zahrnuté</h3>
+                <ul class="vd-features-list">
+                  ${featuresHTML}
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OSTATNÉ VERZIE -->
+      <section class="section bg-alt">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Ďalšie verzie systému</h2>
+          </div>
+          <div class="vd-others">
+            ${othersHTML}
+          </div>
+        </div>
+      </section>
+    `;
+
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+/* ═══════════════════════════════════════════════════════════════
+   verzia-detail.css — Detail stránka verzie systému
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Page Hero ────────────────────────────────────────────── */
+.vd-hero {
+  padding-block: var(--space-xl);
+  text-align:    center;
+}
+.vd-back {
+  display:         inline-block;
+  font-size:       0.82rem;
+  font-weight:     600;
+  color:           rgba(255,255,255,0.65);
+  text-decoration: none;
+  margin-bottom:   var(--space-md);
+  letter-spacing:  .03em;
+  transition:      color var(--transition);
+}
+.vd-back:hover { color: #fff; }
+
+.vd-hero-badge {
+  display:        inline-block;
+  font-size:      0.75rem;
+  font-weight:    700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color:          #fff;
+  padding:        4px 14px;
+  border-radius:  999px;
+  margin-bottom:  var(--space-sm);
+}
+.vd-hero h1 {
+  color:         #fff;
+  margin-bottom: 8px;
+}
+.vd-hero-tagline {
+  color:         rgba(255,255,255,0.75);
+  font-size:     1.05rem;
+  margin-bottom: var(--space-md);
+}
+.vd-hero-price {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            6px;
+}
+.vd-price-amount {
+  font-size:   1.6rem;
+  font-weight: 700;
+  color:       #fff;
+}
+.vd-price-note {
+  font-size: 0.82rem;
+  color:     rgba(255,255,255,0.55);
+  max-width: 380px;
+}
+
+/* ── Hlavný layout ────────────────────────────────────────── */
+.vd-layout {
+  display:               grid;
+  grid-template-columns: 1fr 380px;
+  gap:                   var(--space-xl);
+  align-items:           start;
+}
+
+/* ── Ľavý stĺpec — blokový obsah ─────────────────────────── */
+.vd-block {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--clr-border);
+}
+.vd-block:last-child { border-bottom: none; margin-bottom: 0; }
+
+.vd-block h2 { margin-bottom: var(--space-sm); }
+.vd-block h3 { font-size: 1.05rem; margin-bottom: var(--space-sm); color: var(--clr-dark); }
+
+.vd-perex {
+  font-size:   1.05rem;
+  line-height: 1.75;
+  color:       var(--clr-muted);
+  margin:      0;
+}
+.vd-block p {
+  font-size:     0.97rem;
+  line-height:   1.8;
+  color:         var(--clr-muted);
+  margin-bottom: var(--space-sm);
+}
+.vd-block p:last-child { margin-bottom: 0; }
+
+/* Zoznam "Pre koho" */
+.vd-list {
+  list-style: none;
+  display:    flex;
+  flex-direction: column;
+  gap:        10px;
+}
+.vd-list li {
+  display:     flex;
+  align-items: center;
+  gap:         10px;
+  font-size:   0.95rem;
+  color:       var(--clr-text);
+}
+
+/* Zdieľaný check/X indikátor */
+.vd-check {
+  width:           22px;
+  height:          22px;
+  border-radius:   50%;
+  background:      rgba(11,94,215,0.09);
+  color:           var(--clr-primary);
+  font-weight:     700;
+  font-size:       0.72rem;
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+}
+
+/* Moduly — tagy */
+.vd-modules {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       8px;
+  margin-bottom: var(--space-sm);
+}
+.vd-module-tag {
+  font-size:     0.8rem;
+  font-weight:   600;
+  color:         var(--clr-primary);
+  background:    rgba(11,94,215,0.07);
+  border:        1px solid rgba(11,94,215,0.15);
+  border-radius: var(--radius-sm);
+  padding:       4px 10px;
+}
+.vd-link {
+  font-size:       0.85rem;
+  font-weight:     600;
+  color:           var(--clr-primary);
+  text-decoration: none;
+}
+.vd-link:hover { text-decoration: underline; }
+
+/* ── Pravý stĺpec — sticky ────────────────────────────────── */
+.vd-right {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-md);
+  position:       sticky;
+  top:            90px;
+}
+
+/* CTA karta */
+.vd-cta-card {
+  border-radius: var(--radius-md);
+  overflow:      hidden;
+  box-shadow:    var(--shadow-lg);
+  border:        1px solid var(--clr-border);
+}
+.vd-cta-header {
+  padding:    var(--space-md);
+  text-align: center;
+}
+.vd-cta-badge {
+  display:        inline-block;
+  font-size:      0.72rem;
+  font-weight:    700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color:          rgba(255,255,255,0.7);
+  border:         1px solid rgba(255,255,255,0.25);
+  border-radius:  999px;
+  padding:        3px 12px;
+  margin-bottom:  10px;
+}
+.vd-cta-price {
+  font-size:     1.5rem;
+  font-weight:   700;
+  color:         #fff;
+  margin-bottom: 4px;
+}
+.vd-cta-note {
+  font-size: 0.78rem;
+  color:     rgba(255,255,255,0.6);
+  margin:    0;
+}
+.vd-cta-body {
+  padding:        var(--space-md);
+  display:        flex;
+  flex-direction: column;
+  gap:            10px;
+  background:     var(--bg-card);
+}
+.vd-cta-body .btn { text-align: center; }
+.vd-cta-guarantee {
+  display:     flex;
+  align-items: center;
+  gap:         6px;
+  font-size:   0.78rem;
+  color:       var(--clr-muted);
+  margin:      0;
+  justify-content: center;
+}
+.vd-cta-guarantee svg { color: var(--clr-primary); flex-shrink: 0; }
+
+/* Funkcie karta */
+.vd-features-card {
+  background:    var(--bg-card);
+  border:        1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding:       var(--space-md);
+}
+.vd-features-card h3 { font-size: 0.95rem; margin-bottom: var(--space-sm); }
+
+.vd-features-list {
+  list-style: none;
+  display:    flex;
+  flex-direction: column;
+  gap:        10px;
+}
+.vd-features-list li {
+  display:     flex;
+  align-items: flex-start;
+  gap:         10px;
+  font-size:   0.875rem;
+  color:       var(--clr-text);
+  line-height: 1.4;
+}
+.vd-disabled { opacity: 0.4; }
+.vd-disabled .vd-check {
+  background: rgba(100,116,139,0.08);
+  color:      var(--clr-muted);
+}
+
+/* ── Ostatné verzie ───────────────────────────────────────── */
+.vd-others {
+  display:               grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:                   var(--space-md);
+}
+.vd-other-card {
+  background:      var(--bg-card);
+  border:          1px solid var(--clr-border);
+  border-radius:   var(--radius-md);
+  padding:         var(--space-md);
+  text-decoration: none;
+  color:           inherit;
+  display:         flex;
+  flex-direction:  column;
+  gap:             8px;
+  transition:      box-shadow var(--transition), transform var(--transition),
+                   border-color var(--transition);
+}
+.vd-other-card:hover {
+  box-shadow:   var(--shadow-md);
+  transform:    translateY(-3px);
+  border-color: var(--v-color, var(--clr-primary));
+}
+.vd-other-badge {
+  font-size:      0.72rem;
+  font-weight:    700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding:        3px 10px;
+  border-radius:  999px;
+  display:        inline-block;
+  width:          fit-content;
+}
+.vd-other-card strong { font-size: 1rem; color: var(--clr-dark); }
+.vd-other-card p      { font-size: 0.82rem; color: var(--clr-muted); margin: 0; line-height: 1.5; flex: 1; }
+.vd-other-link        { font-size: 0.8rem; font-weight: 600; color: var(--v-color, var(--clr-primary)); margin-top: auto; }
+
+/* ── Responzívnosť ────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .vd-layout  { grid-template-columns: 1fr; }
+  .vd-right   { position: static; }
+  .vd-others  { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .vd-others  { grid-template-columns: 1fr; }
+}

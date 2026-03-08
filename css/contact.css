@@ -1,0 +1,57 @@
+/* ═══════════════════════════════════════════════════════════════
+   contact.css — KONTAKT (formulár)
+   ───────────────────────────────────────────────────────────────
+   TODO: Email zmeň v action="mailto:..." v index.html
+   TODO: Pre reálny backend použi Formspree alebo Netlify Forms:
+         action="https://formspree.io/f/TVOJ_ID" method="POST"
+   TODO: Pridaj alebo odober polia formulára podľa potreby
+═══════════════════════════════════════════════════════════════ */
+
+/* Pozadie sekcie kontaktu */
+/* TODO: Farbu gradientu zmeň tu */
+.contact-section {
+  background: linear-gradient(135deg, #eef4ff 0%, #f4f7fb 100%);
+}
+
+/* Dvoj-stĺpcový layout — info vľavo, formulár vpravo */
+.contact-inner {
+  display:               grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap:                   var(--space-xl);
+  align-items:           start;
+}
+
+/* Textová časť vľavo */
+.contact-copy .section-title { text-align: left; margin-bottom: var(--space-sm); }
+.contact-copy p               { color: var(--clr-muted); margin-bottom: var(--space-md); }
+
+/* Kontaktné údaje (email, telefón, adresa) */
+/* TODO: Zmeň tieto údaje v index.html */
+.contact-details               { display: flex; flex-direction: column; gap: 10px; }
+.contact-details li            { font-size: 0.95rem; color: var(--clr-muted); }
+
+/* Formulár */
+.contact-form                  { display: grid; gap: var(--space-sm); }
+.contact-form label            { display: flex; flex-direction: column; gap: 6px; }
+.contact-form span             { font-size: 0.875rem; font-weight: 600; color: var(--clr-dark); }
+
+.contact-form input,
+.contact-form textarea {
+  width:         100%;
+  padding:       11px 14px;
+  border:        1.5px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  font-family:   inherit;
+  font-size:     0.95rem;
+  color:         var(--clr-text);
+  background:    #fff;
+  transition:    border-color var(--transition), box-shadow var(--transition);
+  outline:       none;
+}
+
+/* Fokus stav inputov */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--clr-primary);
+  box-shadow:   0 0 0 3px rgba(11, 94, 215, 0.12);
+}

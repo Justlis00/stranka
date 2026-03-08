@@ -1,0 +1,140 @@
+/* ═══════════════════════════════════════════════════════════════
+   features.css — OBLASTI SYSTÉMU
+   ───────────────────────────────────────────────────────────────
+   TODO: Nadpis, podnadpis, texty a ikony zmeň v index.html
+   TODO: href odkazov na kartách zmeň na konkrétne sekcie/stránky
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Hlavička sekcie ──────────────────────────────────────── */
+.features-header {
+  text-align:    center;
+  margin-bottom: var(--space-md);
+}
+
+/* Hlavný nadpis */
+.features-title {
+  font-size:   clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color:       var(--clr-dark);
+  margin-bottom: 10px;
+}
+
+/* Menší podnadpis pod nadpisom */
+.features-subtitle {
+  font-size:   1.05rem;
+  font-weight: 500;
+  color:       var(--clr-muted);
+  margin:      0;
+}
+
+/* ── Dvojstĺpcový text ────────────────────────────────────── */
+/* TODO: Text zmeň v index.html — dve <p> vedľa seba */
+.features-text-cols {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   var(--space-lg);
+  margin-block:          var(--space-lg);
+  padding-block:         var(--space-lg);
+  border-top:            1px solid var(--clr-border);
+  border-bottom:         1px solid var(--clr-border);
+}
+
+/* Na bg-alt sekcii zachovaj rovnaký border */
+.bg-alt .features-text-cols {
+  border-color: var(--clr-border);
+}
+
+/* Medzera medzi textom a mriežkou modulov */
+.bg-alt .features-text-cols + .grid {
+  margin-top: var(--space-lg);
+}
+
+.features-text-cols p {
+  font-size:   1rem;
+  line-height: 1.8;
+  color:       var(--clr-muted);
+  margin:      0;
+}
+
+/* ── 3 ikona-karty s odkazmi ──────────────────────────────── */
+.features-cards {
+  display:               grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:                   var(--space-md);
+  margin-top:            var(--space-lg);
+}
+
+.feature-area-card {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     flex-start;
+  gap:             12px;
+  padding:         var(--space-md);
+  background:      var(--bg-card);
+  border:          1px solid var(--clr-border);
+  border-radius:   var(--radius-md);
+  text-decoration: none;
+  color:           inherit;
+  transition:      box-shadow var(--transition), transform var(--transition),
+                   border-color var(--transition);
+}
+.feature-area-card:hover {
+  box-shadow:   var(--shadow-md);
+  transform:    translateY(-4px);
+  border-color: var(--clr-primary);
+}
+
+/* Ikona */
+.feature-area-icon {
+  width:           56px;
+  height:          56px;
+  border-radius:   var(--radius-sm);
+  background:      rgba(11, 94, 215, 0.08);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+  transition:      background var(--transition);
+}
+.feature-area-card:hover .feature-area-icon {
+  background: rgba(11, 94, 215, 0.14);
+}
+.feature-area-icon svg {
+  width:  26px;
+  height: 26px;
+  color:  var(--clr-primary);
+}
+
+/* Nadpis karty */
+.feature-area-card h3 {
+  font-size:   1rem;
+  font-weight: 700;
+  color:       var(--clr-dark);
+  margin:      0;
+}
+
+/* Popis karty */
+.feature-area-card p {
+  font-size:   0.88rem;
+  color:       var(--clr-muted);
+  line-height: 1.6;
+  margin:      0;
+  flex:        1;
+}
+
+/* Odkaz na spodku karty */
+.feature-area-link {
+  font-size:   0.82rem;
+  font-weight: 600;
+  color:       var(--clr-primary);
+  margin-top:  auto;
+}
+
+/* ── Responzívnosť ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .features-text-cols { grid-template-columns: 1fr; gap: var(--space-md); }
+  .features-cards     { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .features-cards { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,58 @@
+/* ═══════════════════════════════════════════════════════════════
+   buttons.css — TLAČIDLÁ
+   ───────────────────────────────────────────────────────────────
+   TODO: Farbu tlačidiel zmeň cez --clr-primary v variables.css
+   TODO: Zaoblenie zmeň cez --radius-sm v variables.css
+═══════════════════════════════════════════════════════════════ */
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition:
+    background     var(--transition),
+    color          var(--transition),
+    border-color   var(--transition),
+    box-shadow     var(--transition),
+    transform      var(--transition);
+}
+.btn:hover { transform: translateY(-1px); }
+
+/* Primárne (plné) tlačidlo */
+.btn-primary {
+  background:   var(--clr-primary);
+  color:        #fff;
+  border-color: var(--clr-primary);
+  box-shadow:   0 4px 14px rgba(11, 94, 215, 0.35);
+}
+.btn-primary:hover {
+  background:   var(--clr-primary-dk);
+  border-color: var(--clr-primary-dk);
+  box-shadow:   0 6px 20px rgba(11, 94, 215, 0.45);
+}
+
+/* Ohraničené (outline) tlačidlo */
+.btn-outline {
+  background:   transparent;
+  color:        var(--clr-dark);
+  border-color: var(--clr-border);
+}
+.btn-outline:hover {
+  background:   var(--bg-alt);
+  border-color: var(--clr-primary);
+  color:        var(--clr-primary);
+}
+
+/* Celoplošné tlačidlo — napr. v pricing kartách */
+.btn-block {
+  display:    block;
+  text-align: center;
+  width:      100%;
+  margin-top: var(--space-sm);
+}
